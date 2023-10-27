@@ -1,4 +1,5 @@
 import { api } from '@/lib/axios/initAxios'
+import { dayjsFormatMMMMYYYY } from '@/utils/dayjsFormatter'
 import { formatMoney } from '@/utils/formatMoney'
 import { ArrowUpCircle, ArrowDownCircle } from 'lucide-react'
 
@@ -41,7 +42,7 @@ export async function CashBalance({ CODI, NOME, SALD }: CashBalanceProps) {
         </span>
       </div>
       <div className="flex mt-4 gap-2">
-        <p className="text-gray-400 font-bold">Em Outrubro 2023:</p>
+        <p className="text-gray-400 font-bold">Em {dayjsFormatMMMMYYYY()}:</p>
         <div className="flex items-center gap-1">
           <span className="text-green-400 font-bold">
             {formatMoney(totalCreditCurrentMonth)}

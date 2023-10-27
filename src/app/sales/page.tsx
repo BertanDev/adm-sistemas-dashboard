@@ -1,6 +1,11 @@
 import { TotalSales } from '@/components/Sales/cards/total-sales'
 import { TotalSalesMoney } from '@/components/Sales/cards/total-sales-money'
 import SalesPerSeller from '@/components/Sales/graphics/sales-per-seller'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Vendas'
+}
 
 const Sales = () => {
   return (
