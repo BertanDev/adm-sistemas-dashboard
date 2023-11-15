@@ -28,8 +28,12 @@ export async function Balance() {
         >
           R$
         </span>
-        <span className={`${totalBalance >= 0 ? 'text-green-500' : 'text-red-500'}`}>{formatMoney(totalBalance)}</span>
-      </p> 
+        <span
+          className={`${totalBalance >= 0 ? 'text-green-500' : 'text-red-500'}`}
+        >
+          {formatMoney(totalBalance)}
+        </span>
+      </p>
       <div className="flex mt-4 gap-2 items-end">
         <p className="text-gray-400">em {dayjsFormatMMMMYYYY()}:</p>
         <span

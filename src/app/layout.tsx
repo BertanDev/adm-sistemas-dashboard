@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: {
     template: 'ADM Analytics | %s',
-    default: 'ADM Analytics | Home'
+    default: 'ADM Analytics | Home',
   },
 }
 
