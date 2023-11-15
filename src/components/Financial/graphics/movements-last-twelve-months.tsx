@@ -9,7 +9,8 @@ const Chart = dynamic(() => import('react-apexcharts'), { ssr: false })
 
 export default function MovementsLastTwelveMonths() {
   const [financeiro, setFinanceiro] = useState([])
-  const [cashAccounts, setCashAccounts] = useState([])
+  const [cashAccounts, setCashAccounts] =
+    useState<[{ CODI: number; NOME: string }]>()
 
   const [currentCashAccount, setCurrentCashAccont] = useState(0)
 
@@ -44,21 +45,23 @@ export default function MovementsLastTwelveMonths() {
   )
 
   // Ordenar os dados por mês
-  filteredData.sort((a, b) => a.MES - b.MES)
+  filteredData.sort((a: { MES: number }, b: { MES: number }) => a.MES - b.MES)
 
   // Criar arrays separados para as categorias e os valores
-  const categories = []
-  const values = []
+  const categories = [] as Array<string>
+  const values = [] as Array<number>
 
-  filteredData.forEach((item) => {
-    // Formatar a data para o formato desejado (MM/YYYY)
-    const formattedDate = `${String(item.MES).padStart(2, '0')}/${item.ANO}`
-    categories.push(formattedDate)
+  filteredData.forEach(
+    (item: { MES: number; ANO: number; VALOR_TOTAL: number }) => {
+      // Formatar a data para o formato desejado (MM/YYYY)
+      const formattedDate = `${String(item.MES).padStart(2, '0')}/${item.ANO}`
+      categories.push(formattedDate)
 
-    // Adicionar o valor correspondente
-    const roundedValue = parseFloat(item.VALOR_TOTAL.toFixed(2))
-    values.push(roundedValue)
-  })
+      // Adicionar o valor correspondente
+      const roundedValue = parseFloat(item.VALOR_TOTAL.toFixed(2))
+      values.push(roundedValue)
+    },
+  )
 
   const datesArrayFormatted = dayjsFormatMMMYYYY(categories)
 
@@ -76,7 +79,7 @@ export default function MovementsLastTwelveMonths() {
             onChange={(e) => setCurrentCashAccont(Number(e.target.value))}
           >
             <option value={0}>Selecione uma conta</option>
-            {cashAccounts.map((cashAccount) => (
+            {cashAccounts?.map((cashAccount) => (
               <option key={cashAccount.CODI} value={cashAccount.CODI}>
                 {cashAccount.NOME}
               </option>

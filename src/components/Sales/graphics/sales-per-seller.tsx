@@ -8,10 +8,10 @@ import { dayjsFormatMMMYYYY } from '@/utils/dayjsFormatter'
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false })
 
 export default function SalesPerSeller() {
-  const [employees, setEmployees] = useState([])
+  const [employees, setEmployees] = useState<[{ CODI: number; NOME: string }]>()
   const [sales, setSales] = useState([])
 
-  const [currentEmployee, setCurrentEmployee] = useState(0)
+  const [currentEmployee, setCurrentEmployee] = useState<number | undefined>()
 
   useEffect(() => {
     async function getSales() {
@@ -39,12 +39,12 @@ export default function SalesPerSeller() {
     getEmployees()
   }, [])
 
-  const datesArray = []
-  const countArray = []
+  const datesArray = [] as Array<string>
+  const countArray = [] as Array<number>
 
   // Processar os dados e preencher os arrays
   if (sales.length > 0) {
-    sales.forEach((item) => {
+    sales.forEach((item: { MES: number; ANO: number; COUNT: number }) => {
       // Formatar a data para o formato desejado (MM/YYYY)
       const formattedDate = `${String(item.MES).padStart(2, '0')}/${item.ANO}`
 
@@ -67,10 +67,10 @@ export default function SalesPerSeller() {
         <div className="relative">
           <select
             className="text-sm block appearance-none bg-white border border-blue-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-blue-700 focus:shadow-outline-blue"
-            onChange={(e) => setCurrentEmployee(e.target.value)}
+            onChange={(e) => setCurrentEmployee(Number(e.target.value))}
           >
             <option value={0}>Selecione um vendedor</option>
-            {employees.map((employee) => (
+            {employees?.map((employee) => (
               <option key={employee.CODI} value={employee.CODI}>
                 {employee.NOME}
               </option>
