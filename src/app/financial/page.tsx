@@ -2,6 +2,12 @@ import { CashBalance } from '@/components/Financial/cards/CashBalance'
 import MovementsLastTwelveMonths from '@/components/Financial/graphics/movements-last-twelve-months'
 import { api } from '@/lib/axios/initAxios'
 
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: 'Financeiro'
+}
+
 const Financial = async () => {
   const response = await api.get('/cash-account')
 

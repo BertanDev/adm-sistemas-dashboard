@@ -1,3 +1,9 @@
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: 'Produtos'
+}
+
 const Products = () => {
   return (
     <div className="flex w-full h-screen">
