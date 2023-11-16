@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "electron": "electron main.js",
+    "pack": "electron-builder"
   },
   "dependencies": {
     "apexcharts": "^3.43.0",
@@ -24,6 +26,8 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10",
+    "electron": "^27.1.0",
+    "electron-builder": "^24.6.4",
     "eslint": "^8.50.0",
     "eslint-config-next": "13.5.4",
     "postcss": "^8",
