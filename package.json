@@ -6,9 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "electron": "electron main.js",
-    "pack": "electron-builder"
+    "lint": "next lint"
   },
   "dependencies": {
     "apexcharts": "^3.43.0",

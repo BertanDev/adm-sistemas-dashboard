@@ -16,6 +16,22 @@ export function dayjsFormatMMMMYYYY() {
 }
 
 /**
+ * @returns {string} Retorna uma string com a data do mês anterior no formato Janeiro 2023.
+ */
+
+export function dayjsFormatPreviousMMMMYYYY() {
+  const currentDate = dayjs()
+  const previousMonth = currentDate.subtract(1, 'month')
+
+  let formattedPreviousMonth = previousMonth.format('MMMM YYYY')
+  formattedPreviousMonth =
+    formattedPreviousMonth.charAt(0).toUpperCase() +
+    formattedPreviousMonth.slice(1)
+
+  return formattedPreviousMonth
+}
+
+/**
  * @param {Array<string>} data - Recebe um Array no formato ['01/2023', '02/2023'] MM/YYYY.
  * @returns {Array<string>} Retorna um array do mesmo tamanho com as datas no formato ['Jan 2023', 'Fev 2023'] MMM YYYY.
  */
