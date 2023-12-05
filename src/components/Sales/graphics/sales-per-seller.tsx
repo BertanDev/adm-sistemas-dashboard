@@ -21,7 +21,6 @@ export default function SalesPerSeller() {
             func_code: currentEmployee,
           },
         })
-        console.log('--->>', response.data)
         setSales(response.data)
       }
     }
@@ -114,6 +113,8 @@ export default function SalesPerSeller() {
             },
           ]}
           type="line"
+          height={300}
+          width={800}
         />
       </div>
     </div>

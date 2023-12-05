@@ -22,6 +22,7 @@ export default function MovementsLastTwelveMonths() {
         },
       })
 
+      console.log(response.data)
       setFinanceiro(response.data)
     }
 
@@ -37,8 +38,6 @@ export default function MovementsLastTwelveMonths() {
 
     getAccounts()
   }, [])
-
-  console.log(financeiro)
 
   const filteredData = financeiro.filter(
     (item: { ANO: number }) => item.ANO === 2023,
@@ -63,9 +62,15 @@ export default function MovementsLastTwelveMonths() {
     },
   )
 
-  const datesArrayFormatted = dayjsFormatMMMYYYY(categories)
+  let datesArrayFormatted = dayjsFormatMMMYYYY(categories)
 
   console.log(datesArrayFormatted)
+
+  if (!financeiro || financeiro.length === 0) {
+    datesArrayFormatted = ['teste', 'teste']
+  }
+
+  console.log(financeiro)
 
   return (
     <div className="">
@@ -123,6 +128,7 @@ export default function MovementsLastTwelveMonths() {
           ]}
           type="line"
           width="800"
+          height={300}
         />
       </div>
     </div>
