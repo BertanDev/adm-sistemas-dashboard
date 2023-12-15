@@ -77,6 +77,8 @@ export default function BestSellers() {
           }}
           series={values}
           type="bar"
+          width={900}
+          height={400}
         />
       </div>
     </div>
