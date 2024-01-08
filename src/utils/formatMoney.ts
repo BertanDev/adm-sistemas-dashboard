@@ -1,6 +1,6 @@
 export function formatMoney(number: number) {
   if (isNaN(number) || number === null) {
-    return 'NULL'
+    return '0,00'
   }
 
   const formatedNumber = number.toLocaleString('pt-BR', {
