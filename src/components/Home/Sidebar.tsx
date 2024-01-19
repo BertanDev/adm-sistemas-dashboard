@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Logo from '../../assets/images/admLogo.png'
 import Link from 'next/link'
+import { LogOutButton } from './LogOutButton'
 
 const Sidebar = () => {
   return (
@@ -8,13 +9,16 @@ const Sidebar = () => {
       <Image src={Logo} alt="Logoitipo com as letras A - D - M" width="200" />
       <ul className="mt-4">
         <li className="mb-4">
-          <Link href="/" className="block px-4 py-2 rounded hover:bg-blue-500">
+          <Link
+            href="/dashboard/home"
+            className="block px-4 py-2 rounded hover:bg-blue-500"
+          >
             Home
           </Link>
         </li>
         <li className="mb-4">
           <Link
-            href="/financial"
+            href="/dashboard/financial"
             className="block px-4 py-2 rounded hover:bg-blue-500"
           >
             Financeiro
@@ -22,7 +26,7 @@ const Sidebar = () => {
         </li>
         <li className="mb-4">
           <Link
-            href="/sales"
+            href="/dashboard/sales"
             className="block px-4 py-2 rounded hover:bg-blue-500"
           >
             Vendas
@@ -30,19 +34,22 @@ const Sidebar = () => {
         </li>
         <li className="mb-4">
           <Link
-            href="/products"
+            href="/dashboard/products"
             className="block px-4 py-2 rounded hover:bg-blue-500"
           >
             Produtos
           </Link>
         </li>
-        <li>
+        <li className="mb-4">
           <Link
-            href="/clients"
+            href="/dashboard/clients"
             className="block px-4 py-2 rounded hover:bg-blue-500"
           >
             Clientes
           </Link>
+        </li>
+        <li>
+          <LogOutButton />
         </li>
       </ul>
       <p className="mt-auto bottom-0 text-sm">

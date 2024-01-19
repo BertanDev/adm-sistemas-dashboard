@@ -34,7 +34,7 @@ export async function TotalSalesMoney() {
       <div className="flex items-end mt-2 gap-2">
         <p className="text-gray-400 font-bold">
           R${' '}
-          <span className="text-blue-600 font-bold text-3xl">
+          <span className="text-blue-600 font-bold text-3xl mr-2">
             {formatMoney(totalSalesCurrentMonthMoney)}
           </span>
           em {dayjsFormatMMMMYYYY()}
