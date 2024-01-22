@@ -2,15 +2,26 @@ import { api } from '@/lib/axios/initAxios'
 import { dayjsFormatMMMMYYYY } from '@/utils/dayjsFormatter'
 import { differenceBetweenTwoValuesInPercentage } from '@/utils/difference-between-two-values-in-percentage'
 import { formatMoney } from '@/utils/formatMoney'
+import { getAuthTokenServer } from '@/utils/get-auth-token-server'
 import { BadgeDollarSign } from 'lucide-react'
 
 export async function TotalSalesMoney() {
+  const token = getAuthTokenServer()
+
   const [
     totalSalesCurrentMonthMoneyResponse,
     totalSalesPreviousMonthMoneyResponse,
   ] = await Promise.all([
-    api.get('/sales-on-current-month-money'),
-    api.get('/sales-on-previous-month-money'),
+    api.get('/sales-on-current-month-money', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
+    api.get('/sales-on-previous-month-money', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
   ])
 
   const { TOTAL: totalSalesCurrentMonthMoney } =

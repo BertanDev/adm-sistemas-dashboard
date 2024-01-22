@@ -3,13 +3,20 @@ import MovementsLastTwelveMonths from '@/components/Financial/graphics/movements
 import { api } from '@/lib/axios/initAxios'
 
 import { Metadata } from 'next'
+import { getAuthTokenServer } from '@/utils/get-auth-token-server'
 
 export const metadata: Metadata = {
   title: 'Financeiro',
 }
 
 const Financial = async () => {
-  const response = await api.get('/cash-account')
+  const token = getAuthTokenServer()
+
+  const response = await api.get('/cash-account', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
 
   const data = response.data as Array<{
     CODI: number

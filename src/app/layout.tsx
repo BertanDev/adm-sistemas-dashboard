@@ -1,8 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter, Kanit } from 'next/font/google'
+import { Kanit } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
 const kanit = Kanit({ subsets: ['latin'], weight: '400' })
 
 export const metadata: Metadata = {

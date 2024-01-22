@@ -1,13 +1,24 @@
 import { api } from '@/lib/axios/initAxios'
 import { dayjsFormatMMMMYYYY } from '@/utils/dayjsFormatter'
 import { formatMoney } from '@/utils/formatMoney'
+import { getAuthTokenServer } from '@/utils/get-auth-token-server'
 import { ArrowDownUp } from 'lucide-react'
 
 export async function Balance() {
+  const token = getAuthTokenServer()
+
   const [totalBalanceResponse, totalBalanceCurrrentMonthResponse] =
     await Promise.all([
-      api.get('/total-balance'),
-      api.get('/total-balance-current-month'),
+      api.get('/total-balance', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+      api.get('/total-balance-current-month', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
     ])
 
   const { TOTAL: totalBalance } = totalBalanceResponse.data

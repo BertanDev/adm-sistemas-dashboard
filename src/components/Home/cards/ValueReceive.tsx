@@ -1,13 +1,24 @@
 import { api } from '@/lib/axios/initAxios'
 import { dayjsFormatMMMMYYYY } from '@/utils/dayjsFormatter'
 import { formatMoney } from '@/utils/formatMoney'
+import { getAuthTokenServer } from '@/utils/get-auth-token-server'
 import { ArrowUpCircle } from 'lucide-react'
 
 export async function ValueReceive() {
+  const token = getAuthTokenServer()
+
   const [amountToReceiveResponse, amountToReceiveCurrrentMonthResponse] =
     await Promise.all([
-      api.get('/total-receivable'),
-      api.get('/total-receivable-current-month'),
+      api.get('/total-receivable', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+      api.get('/total-receivable-current-month', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
     ])
 
   const { TOTAL: amountToReceive } = amountToReceiveResponse.data

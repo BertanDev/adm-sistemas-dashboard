@@ -1,6 +1,7 @@
 import { api } from '@/lib/axios/initAxios'
 import { dayjsFormatMMMMYYYY } from '@/utils/dayjsFormatter'
 import { formatMoney } from '@/utils/formatMoney'
+import { getAuthTokenServer } from '@/utils/get-auth-token-server'
 import { ArrowUpCircle, ArrowDownCircle } from 'lucide-react'
 
 interface CashBalanceProps {
@@ -10,16 +11,24 @@ interface CashBalanceProps {
 }
 
 export async function CashBalance({ CODI, NOME, SALD }: CashBalanceProps) {
+  const token = getAuthTokenServer()
+
   const [totalCreditCurrentMonthResponse, totalDebitCurrentMonthResponse] =
     await Promise.all([
       api.get('/total-credit-movements-current-month', {
         params: {
           acc: CODI,
         },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }),
       api.get('/total-debit-movements-current-month', {
         params: {
           acc: CODI,
+        },
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
       }),
     ])

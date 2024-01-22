@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 
 import dynamic from 'next/dynamic'
 import { dayjsFormatMMMYYYY } from '@/utils/dayjsFormatter'
+import { getAuthTokenClient } from '@/utils/get-auth-token-client'
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false })
 
 export default function SalesPerSeller() {
@@ -13,6 +14,8 @@ export default function SalesPerSeller() {
 
   const [currentEmployee, setCurrentEmployee] = useState<number | undefined>()
 
+  const token = getAuthTokenClient()
+
   useEffect(() => {
     async function getSales() {
       if (currentEmployee !== 0) {
@@ -20,23 +23,30 @@ export default function SalesPerSeller() {
           params: {
             func_code: currentEmployee,
           },
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         })
         setSales(response.data)
       }
     }
 
     getSales()
-  }, [currentEmployee])
+  }, [currentEmployee, token])
 
   useEffect(() => {
     async function getEmployees() {
       await api
-        .get('/employees')
+        .get('/employees', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
         .then((response) => setEmployees(response.data))
     }
 
     getEmployees()
-  }, [])
+  }, [token])
 
   const datesArray = [] as Array<string>
   const countArray = [] as Array<number>

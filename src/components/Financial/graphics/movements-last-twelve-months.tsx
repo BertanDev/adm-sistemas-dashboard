@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import { api } from '@/lib/axios/initAxios'
 import { useState, useEffect } from 'react'
 import { dayjsFormatMMMYYYY } from '@/utils/dayjsFormatter'
+import { getAuthTokenClient } from '@/utils/get-auth-token-client'
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false })
 
 export default function MovementsLastTwelveMonths() {
@@ -14,11 +15,16 @@ export default function MovementsLastTwelveMonths() {
 
   const [currentCashAccount, setCurrentCashAccont] = useState(0)
 
+  const token = getAuthTokenClient()
+
   useEffect(() => {
     async function getFinanceiro() {
       const response = await api.get('/movements-last-twelve-months', {
         params: {
           cont: currentCashAccount,
+        },
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
       })
 
@@ -27,17 +33,21 @@ export default function MovementsLastTwelveMonths() {
     }
 
     getFinanceiro()
-  }, [currentCashAccount])
+  }, [currentCashAccount, token])
 
   useEffect(() => {
     async function getAccounts() {
-      const response = await api.get('/cash-account')
+      const response = await api.get('/cash-account', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
 
       setCashAccounts(response.data)
     }
 
     getAccounts()
-  }, [])
+  }, [token])
 
   const filteredData = financeiro.filter(
     (item: { ANO: number }) => item.ANO === 2023,
@@ -63,8 +73,6 @@ export default function MovementsLastTwelveMonths() {
   )
 
   let datesArrayFormatted = dayjsFormatMMMYYYY(categories)
-
-  console.log(datesArrayFormatted)
 
   if (!financeiro || financeiro.length === 0) {
     datesArrayFormatted = ['teste', 'teste']
