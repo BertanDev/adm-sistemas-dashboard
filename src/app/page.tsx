@@ -7,6 +7,7 @@ import { Toaster, toast } from 'react-hot-toast'
 import { api } from '@/lib/axios/initAxios'
 import { useRouter } from 'next/navigation'
 import Cookie from 'js-cookie'
+import { useEffect } from 'react'
 
 const loginFormSchema = z.object({
   email: z.string().min(1, { message: 'Informe seu email' }),
@@ -16,6 +17,17 @@ const loginFormSchema = z.object({
 type LoginFormData = z.infer<typeof loginFormSchema>
 
 export default function App() {
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const stValue = urlParams.get('st')
+
+    if (stValue) {
+      stValue === 't'
+        ? toast.success('Senha redefinida com sucesso!')
+        : toast.error('Não foi possivel redefinir a senha')
+    }
+  }, [])
+
   const loginForm = useForm<LoginFormData>({
     resolver: zodResolver(loginFormSchema),
   })
