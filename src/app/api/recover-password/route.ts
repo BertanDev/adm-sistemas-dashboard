@@ -4,8 +4,8 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function GET(req: NextRequest) {
   const token = req.nextUrl.searchParams.get('t')
 
-  const successRoute = new URL('/?st=t', req.url)
-  const failedRoute = new URL('/?st=f', req.url)
+  const successRoute = new URL('/?st=t', '54.207.219.196:3000')
+  const failedRoute = new URL('/?st=f', '54.207.219.196:3000')
 
   try {
     await api.post('/confirm-recover', {
