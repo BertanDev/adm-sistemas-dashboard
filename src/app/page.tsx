@@ -41,8 +41,8 @@ export default function App() {
 
       api.defaults.headers.common.Authorization = `Bearer ${token}`
       Cookie.set('auth_token', token)
-      router.push('/dashboard/home')
       toast.success('Bem vindo!')
+      router.push('/dashboard/home')
     } catch {
       toast.error('Não foi possível realizar login')
     }
