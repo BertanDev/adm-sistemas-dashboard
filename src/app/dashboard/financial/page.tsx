@@ -25,9 +25,9 @@ const Financial = async () => {
   }>
 
   return (
-    <div className="flex w-full h-screen">
-      <main className="flex-1 p-8 bg-gray-100">
-        <h1 className="text-3xl font-bold mb-6 text-blue-400">
+    <div className="flex-1 py-10 h-full">
+      <main className="flex-1 p-3 lg:p-8 bg-gray-100">
+        <h1 className="text-3xl font-bold mb-2 text-blue-400">
           Sua análise <span className="text-blue-500">Financeira</span>
         </h1>
         <div className="grid grid-cols-1 min-[1110px]:grid-cols-2 2xl:grid-cols-3 gap-8">
@@ -43,7 +43,7 @@ const Financial = async () => {
           })}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+        <div className="grid grid-cols-1 2xl:grid-cols-2 gap-8 mt-8">
           <MovementsLastTwelveMonths />
         </div>
       </main>

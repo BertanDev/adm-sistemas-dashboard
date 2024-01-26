@@ -69,13 +69,13 @@ export default function SalesPerSeller() {
 
   return (
     <div className="">
-      <div className="flex items-center gap-4 w-full justify-between">
-        <h2 className="text-gray-600 font-bold text-xl">
+      <div className="flex flex-col lg:flex-row items-center gap-4 w-full lg:justify-between">
+        <h2 className="text-gray-600 font-bold text-lg lg:text-xl">
           Vendas por vendedor últimos 12 meses
         </h2>
         <div className="relative">
           <select
-            className="text-sm block appearance-none bg-white border border-blue-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-blue-700 focus:shadow-outline-blue"
+            className="text-sm float-left appearance-none bg-white border border-blue-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-blue-700 focus:shadow-outline-blue"
             onChange={(e) => setCurrentEmployee(Number(e.target.value))}
           >
             <option value={0}>Selecione um vendedor</option>
@@ -97,7 +97,7 @@ export default function SalesPerSeller() {
         </div>
       </div>
 
-      <div className="text-black">
+      <div className="text-black z-0">
         <Chart
           options={{
             chart: {
@@ -124,7 +124,7 @@ export default function SalesPerSeller() {
           ]}
           type="line"
           height={300}
-          width={800}
+          width='100%'
         />
       </div>
     </div>

@@ -17,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="h-full">
-      <body className={`${kanit.className} h-full bg-white`}>{children}</body>
+    <html lang="en" className="h-screen">
+      <body className={`${kanit.className} h-screen bg-gray-100`}>{children}</body>
     </html>
   )
 }

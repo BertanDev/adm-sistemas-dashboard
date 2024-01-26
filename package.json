@@ -10,6 +10,8 @@
     "fix": "next lint --fix"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.18",
+    "@heroicons/react": "^2.1.1",
     "@hookform/resolvers": "^3.3.4",
     "apexcharts": "^3.43.0",
     "axios": "^1.5.1",

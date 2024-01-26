@@ -16,7 +16,6 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.redirect(successRoute)
   } catch (error) {
-    console.log(error)
     return NextResponse.redirect(failedRoute)
   }
 }

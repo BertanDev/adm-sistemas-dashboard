@@ -7,13 +7,13 @@ export const metadata: Metadata = {
 
 const Products = () => {
   return (
-    <div className="flex w-full h-screen">
+    <div className="flex h-full">
       <main className="flex-1 p-8 bg-gray-100">
         <h1 className="text-3xl font-bold mb-6 text-blue-400">
           Visão geral do seu <span className="text-blue-500">Estoque</span>
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-          <BestSellers />
+          {/* <BestSellers /> */}
         </div>
       </main>
     </div>
