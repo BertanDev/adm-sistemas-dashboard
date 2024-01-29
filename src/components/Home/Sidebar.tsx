@@ -6,24 +6,24 @@ import { LogOutButton } from './LogOutButton'
 const pages = [
   {
     href: '/dashboard/home',
-    childrenText: 'Home'
+    childrenText: 'Home',
   },
   {
     href: '/dashboard/financial',
-    childrenText: 'Financeiro'
+    childrenText: 'Financeiro',
   },
   {
     href: '/dashboard/sales',
-    childrenText: 'Vendas'
+    childrenText: 'Vendas',
   },
   {
     href: '/dashboard/products',
-    childrenText: 'Produtos'
+    childrenText: 'Produtos',
   },
   {
     href: '/dashboard/clients',
-    childrenText: 'Clientes'
-  }
+    childrenText: 'Clientes',
+  },
 ]
 
 const Sidebar = () => {
@@ -31,7 +31,13 @@ const Sidebar = () => {
     <nav className="bg-blue-500 h-screen w-64 fixed text-white p-4 flex flex-col">
       <Image src={Logo} alt="Logoitipo com as letras A - D - M" width="200" />
       <ul className="mt-4">
-        {pages.map((page) => <LinkComponent key={page.href} href={page.href} childrenText={page.childrenText} />)}
+        {pages.map((page) => (
+          <LinkComponent
+            key={page.href}
+            href={page.href}
+            childrenText={page.childrenText}
+          />
+        ))}
       </ul>
       <LogOutButton />
       <p className="mt-auto bottom-0 text-sm">
@@ -51,14 +57,9 @@ interface LinkComponentProps {
 const LinkComponent = ({ href, childrenText }: LinkComponentProps) => {
   return (
     <li className="mb-4">
-      <Link
-        href={href}
-        className="block px-4 py-2 rounded hover:bg-blue-500"
-      >
-        {childrenText}  
+      <Link href={href} className="block px-4 py-2 rounded hover:bg-blue-500">
+        {childrenText}
       </Link>
     </li>
   )
 }
-
-

@@ -17,12 +17,12 @@ export default function DashboardLayout({
     <section className="flex flex-col lg:flex-row">
       {/* Sidebar para telas grandes */}
       <div className="hidden lg:block w-64">
-        <Sidebar  />
+        <Sidebar />
       </div>
 
       {/* Menu para telas pequenas */}
       <div className="lg:hidden">
-        <Menu  />
+        <Menu />
       </div>
 
       {/* Conteúdo principal (children) */}

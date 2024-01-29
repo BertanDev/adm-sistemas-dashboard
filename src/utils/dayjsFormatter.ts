@@ -49,3 +49,19 @@ export function dayjsFormatMMMYYYY(data: Array<string>) {
 
   return upperCaseFormat
 }
+
+/**
+ * @returns {Array<string>} Retorna um array dos últimos 12 meses no formato ['01/2023', 02/2023]'.
+ */
+
+export function getLastTwelveMonths() {
+  const currentMonth = dayjs()
+  const monthsArray = []
+
+  for (let i = 0; i < 12; i++) {
+    const formattedDate = currentMonth.subtract(i, 'month').format('MM/YYYY')
+    monthsArray.unshift(formattedDate)
+  }
+
+  return monthsArray
+}

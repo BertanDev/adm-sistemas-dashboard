@@ -6,13 +6,16 @@ import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { dayjsFormatMMMYYYY } from '@/utils/dayjsFormatter'
 import { getAuthTokenClient } from '@/utils/get-auth-token-client'
+import { SalesAllSellers } from './sales-all-seller'
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false })
 
 export default function SalesPerSeller() {
-  const [employees, setEmployees] = useState<[{ CODI: number; NOME: string }]>()
-  const [sales, setSales] = useState([])
+  const [employees, setEmployees] = useState<
+    Array<{ CODI: number; NOME: string }>
+  >([])
+  const [sales, setSales] = useState<Array<any>>([])
 
-  const [currentEmployee, setCurrentEmployee] = useState<number | undefined>()
+  const [currentEmployee, setCurrentEmployee] = useState<number | undefined>(0)
 
   const token = getAuthTokenClient()
 
@@ -51,16 +54,18 @@ export default function SalesPerSeller() {
   const datesArray = [] as Array<string>
   const countArray = [] as Array<number>
 
-  // Processar os dados e preencher os arrays
   if (sales.length > 0) {
     sales.forEach((item: { MES: number; ANO: number; COUNT: number }) => {
       // Formatar a data para o formato desejado (MM/YYYY)
       const formattedDate = `${String(item.MES).padStart(2, '0')}/${item.ANO}`
 
       // Adicionar a data ao array de datas
-      datesArray.push(formattedDate)
+      if (!datesArray.includes(formattedDate)) {
+        datesArray.push(formattedDate)
+      }
 
       // Adicionar o valor do COUNT ao array de valores
+
       countArray.push(item.COUNT)
     })
   }
@@ -98,34 +103,38 @@ export default function SalesPerSeller() {
       </div>
 
       <div className="text-black z-0">
-        <Chart
-          options={{
-            chart: {
-              type: 'line',
-            },
-            dataLabels: {
-              enabled: false,
-            },
-            xaxis: {
-              categories: datesArrayFormatted,
-            },
-            grid: {
-              row: {
-                colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-                opacity: 0.5,
+        {currentEmployee === 0 ? (
+          <SalesAllSellers employees={employees} />
+        ) : (
+          <Chart
+            options={{
+              chart: {
+                type: 'line',
               },
-            },
-          }}
-          series={[
-            {
-              name: 'Vendas no mês',
-              data: countArray,
-            },
-          ]}
-          type="line"
-          height={300}
-          width='100%'
-        />
+              dataLabels: {
+                enabled: false,
+              },
+              xaxis: {
+                categories: datesArrayFormatted,
+              },
+              grid: {
+                row: {
+                  colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                  opacity: 0.5,
+                },
+              },
+            }}
+            series={[
+              {
+                name: 'Vendas no mês',
+                data: countArray,
+              },
+            ]}
+            type="line"
+            height={300}
+            width="100%"
+          />
+        )}
       </div>
     </div>
   )
