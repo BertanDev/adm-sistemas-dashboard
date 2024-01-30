@@ -6,30 +6,43 @@ import {
   dayjsFormatMMMMYYYY,
   dayjsFormatPreviousMMMMYYYY,
 } from '@/utils/dayjsFormatter'
+import { useEffect, useState } from 'react'
+import { api } from '@/lib/axios/initAxios'
+import { getAuthTokenClient } from '@/utils/get-auth-token-client'
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false })
 
 export default function BestSellers() {
-  const products = [
-    'Arruela mecânica',
-    'Jogo de chave',
-    'Martelo',
-    'Chave de fenda',
-    'Parafuso',
-    'Furadeira',
-    'Serra elétrica',
-    'Alicate',
-    'Lixadeira',
-    'Nível a laser',
-  ]
+  const [products, setProducts] = useState<Array<{ DESCR: string, TOTAL_ATUAL: string, TOTAL_MES_ANTERIOR: string }>>([])
+
+  const token = getAuthTokenClient()
+
+  useEffect(() => {
+    async function getData() {
+      const response = await api.get(`/top-ten-best-sellers`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      setProducts(response.data)
+    }
+
+    getData()
+  }, [])
+
+  const categories = products.map(product => product.DESCR)
+
+  const valueCurrentMonth = products.map(product => product.TOTAL_ATUAL)
+  const valuePreviousMonth = products.map(product => product.TOTAL_MES_ANTERIOR)
 
   const values = [
     {
       name: dayjsFormatMMMMYYYY(),
-      data: [44, 55, 57, 56, 61, 58, 63, 60, 66, 100],
+      data: valueCurrentMonth,
     },
     {
       name: dayjsFormatPreviousMMMMYYYY(),
-      data: [76, 85, 101, 98, 87, 105, 91, 114, 94, 27],
+      data: valuePreviousMonth,
     },
   ]
 
@@ -51,7 +64,7 @@ export default function BestSellers() {
             },
             plotOptions: {
               bar: {
-                horizontal: false,
+                horizontal: true,
                 columnWidth: '55%',
               },
             },
@@ -61,12 +74,24 @@ export default function BestSellers() {
               colors: ['transparent'],
             },
             yaxis: {
+              labels: {
+                style: {
+                  fontSize: '12px',
+                  fontWeight: 700
+                }
+              }  
+            },
+            xaxis: {
+              categories,
+              labels: {
+                style: {
+                  fontSize: '12px',
+                  fontWeight: 700
+                }
+              },
               title: {
                 text: 'Quantidade',
               },
-            },
-            xaxis: {
-              categories: products,
             },
             grid: {
               row: {
@@ -77,8 +102,8 @@ export default function BestSellers() {
           }}
           series={values}
           type="bar"
-          width={900}
           height={400}
+          width="100%"
         />
       </div>
     </div>
