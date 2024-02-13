@@ -1,6 +1,7 @@
-import { Stafftable } from '@/components/Home/StaffTable'
 import { AmountToPay } from '@/components/Home/cards/AmountToPay'
 import { Balance } from '@/components/Home/cards/Balance'
+import { PayableByDate } from '@/components/Home/cards/PayableByDate'
+import { ReceivableByDate } from '@/components/Home/cards/ReceivableByDate'
 import { ValueReceive } from '@/components/Home/cards/ValueReceive'
 
 const Home = () => {
@@ -19,7 +20,10 @@ const Home = () => {
           <Balance />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12"></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+          <ReceivableByDate />
+          <PayableByDate />
+        </div>
       </main>
     </div>
   )

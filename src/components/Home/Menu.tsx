@@ -62,7 +62,7 @@ const callsToAction = [
 
 export function Menu() {
   return (
-    <Popover className="fixed w-full z-10">
+    <Popover className="fixed w-full z-20">
       <div className="flex items-center w-full justify-between p-2 bg-blue-500 text-white">
         <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6">
           <span>Menu</span>
