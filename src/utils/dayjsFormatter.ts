@@ -66,6 +66,6 @@ export function getLastTwelveMonths() {
   return monthsArray
 }
 
-export function getCurrentDate_DD_MM_YYYY() {
+export function getCurrentDateDDMMYYYY() {
   return dayjs().format('DD/MM/YYYY')
 }

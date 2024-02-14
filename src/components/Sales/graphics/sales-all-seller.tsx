@@ -31,7 +31,7 @@ export function SalesAllSellers({ employees }: SalesAllSellersProps) {
     if (employees) {
       getData()
     }
-  }, [])
+  }, [employees, token])
 
   const lastTwelveMonths = dayjsFormatMMMYYYY(getLastTwelveMonths())
 

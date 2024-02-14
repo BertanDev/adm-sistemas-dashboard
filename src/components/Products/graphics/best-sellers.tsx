@@ -12,7 +12,9 @@ import { getAuthTokenClient } from '@/utils/get-auth-token-client'
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false })
 
 export default function BestSellers() {
-  const [products, setProducts] = useState<Array<{ DESCR: string, TOTAL_ATUAL: string, TOTAL_MES_ANTERIOR: string }>>([])
+  const [products, setProducts] = useState<
+    Array<{ DESCR: string; TOTAL_ATUAL: string; TOTAL_MES_ANTERIOR: string }>
+  >([])
 
   const token = getAuthTokenClient()
 
@@ -30,10 +32,12 @@ export default function BestSellers() {
     getData()
   }, [])
 
-  const categories = products.map(product => product.DESCR)
+  const categories = products.map((product) => product.DESCR)
 
-  const valueCurrentMonth = products.map(product => product.TOTAL_ATUAL)
-  const valuePreviousMonth = products.map(product => product.TOTAL_MES_ANTERIOR)
+  const valueCurrentMonth = products.map((product) => product.TOTAL_ATUAL)
+  const valuePreviousMonth = products.map(
+    (product) => product.TOTAL_MES_ANTERIOR,
+  )
 
   const values = [
     {
@@ -77,17 +81,17 @@ export default function BestSellers() {
               labels: {
                 style: {
                   fontSize: '12px',
-                  fontWeight: 700
-                }
-              }  
+                  fontWeight: 700,
+                },
+              },
             },
             xaxis: {
               categories,
               labels: {
                 style: {
                   fontSize: '12px',
-                  fontWeight: 700
-                }
+                  fontWeight: 700,
+                },
               },
               title: {
                 text: 'Quantidade',
