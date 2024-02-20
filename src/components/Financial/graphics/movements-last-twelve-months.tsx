@@ -28,7 +28,6 @@ export default function MovementsLastTwelveMonths() {
         },
       })
 
-      console.log(response.data)
       setFinanceiro(response.data)
     }
 
@@ -77,8 +76,6 @@ export default function MovementsLastTwelveMonths() {
   if (!financeiro || financeiro.length === 0) {
     datesArrayFormatted = ['teste', 'teste']
   }
-
-  console.log(financeiro)
 
   return (
     <div className="">

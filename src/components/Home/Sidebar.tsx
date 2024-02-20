@@ -29,7 +29,7 @@ const pages = [
 const Sidebar = () => {
   return (
     <nav className="bg-blue-500 h-screen w-64 fixed text-white p-4 flex flex-col">
-      <Image src={Logo} alt="Logoitipo com as letras A - D - M" width="200" />
+      <Image src={Logo} alt="Logoitipo com as letras A - D - M" width="300" />
       <ul className="mt-4">
         {pages.map((page) => (
           <LinkComponent

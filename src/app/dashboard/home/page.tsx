@@ -3,6 +3,7 @@ import { Balance } from '@/components/Home/cards/Balance'
 import { PayableByDate } from '@/components/Home/cards/PayableByDate'
 import { ReceivableByDate } from '@/components/Home/cards/ReceivableByDate'
 import { ValueReceive } from '@/components/Home/cards/ValueReceive'
+import { PurchaseAndSales } from '@/components/Home/graphics/purchase-and-sales'
 
 const Home = () => {
   return (
@@ -23,6 +24,11 @@ const Home = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           <ReceivableByDate />
           <PayableByDate />
+        </div>
+
+        <div className="grid grid-cols-1 2xl:grid-cols-2 gap-8 mt-8">
+         <PurchaseAndSales />
+          {/* <ProfitGroupProducts /> */}
         </div>
       </main>
     </div>
