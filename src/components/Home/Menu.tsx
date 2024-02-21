@@ -5,7 +5,7 @@ import { Popover, Transition } from '@headlessui/react'
 import {
   ChevronDownIcon,
   GlobeAmericasIcon,
-  PhoneIcon,
+  PhoneIcon
 } from '@heroicons/react/20/solid'
 import {
   ChartBarIcon,
@@ -14,6 +14,9 @@ import {
   UserGroupIcon,
   BanknotesIcon,
 } from '@heroicons/react/24/outline'
+
+import { LogOut } from 'lucide-react'
+import { LogOutButton } from './LogOutButton'
 
 const solutions = [
   {
@@ -53,11 +56,11 @@ const callsToAction = [
     href: 'https://web.adminfo.com.br/',
     icon: GlobeAmericasIcon,
   },
-  {
-    name: 'Contate o suporte',
-    href: 'https://api.whatsapp.com/send?1=pt_BR&phone=5549988080074',
-    icon: PhoneIcon,
-  },
+  // {
+  //   name: 'LogOut',
+  //   href: 'https://api.whatsapp.com/send?1=pt_BR&phone=5549988080074',
+  //   icon: LogOut,
+  // },
 ]
 
 export function Menu() {
@@ -107,7 +110,7 @@ export function Menu() {
                 </div>
               ))}
             </div>
-            <div className="sm:w-2 grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+            <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
               {callsToAction.map((item) => (
                 <a
                   key={item.name}
@@ -122,6 +125,7 @@ export function Menu() {
                   {item.name}
                 </a>
               ))}
+              <LogOutButton />
             </div>
           </div>
         </Popover.Panel>

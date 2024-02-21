@@ -30,7 +30,7 @@ const Financial = async () => {
         <h1 className="text-3xl font-bold mb-2 text-blue-400">
           Sua análise <span className="text-blue-500">Financeira</span>
         </h1>
-        <div className="grid grid-cols-1 min-[1110px]:grid-cols-2 2xl:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 min-[960px]:grid-cols-2 2xl:grid-cols-3 gap-8">
           {data.map((item) => {
             return (
               <CashBalance
