@@ -5,7 +5,7 @@ import { Popover, Transition } from '@headlessui/react'
 import {
   ChevronDownIcon,
   GlobeAmericasIcon,
-  PhoneIcon
+  PhoneIcon,
 } from '@heroicons/react/20/solid'
 import {
   ChartBarIcon,

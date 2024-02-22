@@ -1,18 +1,23 @@
 'use client'
 
-import { ChangeEvent } from "react"
+import { ChangeEvent } from 'react'
 
 interface SelectProps {
-    options: {
-        value: number
-        label: string
-    }[],
-    placeholder: string,
-    onChange: (e: ChangeEvent<HTMLSelectElement>) => void
+  options: {
     value: number
+    label: string
+  }[]
+  placeholder: string
+  onChange: (e: ChangeEvent<HTMLSelectElement>) => void
+  value: number
 }
 
-export const Select = ({ options, placeholder, onChange, value }: SelectProps) => {
+export const Select = ({
+  options,
+  placeholder,
+  onChange,
+  value,
+}: SelectProps) => {
   return (
     <div className="relative">
       <select
@@ -35,9 +40,14 @@ export const Select = ({ options, placeholder, onChange, value }: SelectProps) =
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"
+          ></path>
         </svg>
       </div>
     </div>
-  );
-};
+  )
+}

@@ -22,7 +22,10 @@ export function LogOutButton() {
           className="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-red-500 hover:bg-gray-100"
           onClick={handleLogout}
         >
-          <LogOut className='h-5 w-5 flex-none  text-red-500' aria-hidden="true" /> 
+          <LogOut
+            className="h-5 w-5 flex-none  text-red-500"
+            aria-hidden="true"
+          />
           Log out
         </button>
       ) : (
@@ -31,7 +34,7 @@ export function LogOutButton() {
           onClick={handleLogout}
         >
           <LogOut size={20} />
-          <span className='text-base font-semibold'>LogOut</span>
+          <span className="text-base font-semibold">LogOut</span>
         </button>
       )}
     </>
