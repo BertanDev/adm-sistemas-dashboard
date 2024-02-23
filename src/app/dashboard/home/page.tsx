@@ -3,6 +3,7 @@ import { Balance } from '@/components/Home/cards/Balance'
 import { PayableByDate } from '@/components/Home/cards/PayableByDate'
 import { ReceivableByDate } from '@/components/Home/cards/ReceivableByDate'
 import { ValueReceive } from '@/components/Home/cards/ValueReceive'
+import { ABCClients } from '@/components/Home/graphics/abc-clients'
 import { ABCSuppliers } from '@/components/Home/graphics/abc-suppliers'
 import { PurchaseAndSales } from '@/components/Home/graphics/purchase-and-sales'
 
@@ -27,8 +28,7 @@ const Home = () => {
           <PayableByDate />
           <div className="flex flex-col gap-2">
             <ABCSuppliers />
-            {/* <ABCSuppliers />
-            <ABCSuppliers /> */}
+            <ABCClients />
           </div>
         </div>
 

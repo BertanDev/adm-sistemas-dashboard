@@ -1,19 +1,19 @@
 import { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { FornecedorABC } from '../graphics/abc-suppliers'
+import { ClientABC } from '../graphics/abc-clients'
 import { formatMoney } from '@/utils/formatMoney'
 
-interface SuppliersModalProps {
+interface ClientsModalProps {
   isOpen: boolean
   setOpen: (arg: boolean) => void
-  data: FornecedorABC[]
+  data: ClientABC[]
 }
 
-export default function SuppliersModal({
+export default function CLientsModal({
   isOpen,
   setOpen,
   data,
-}: SuppliersModalProps) {
+}: ClientsModalProps) {
   const cancelButtonRef = useRef(null)
 
   return (
@@ -54,7 +54,7 @@ export default function SuppliersModal({
                       as="h3"
                       className="text-lg font-semibold leading-6 text-gray-900"
                     >
-                      Curva ABC Fornecedores (Custo)
+                      Curva ABC Clientes (Vendas)
                     </Dialog.Title>
                   </div>
                 </div>
@@ -86,7 +86,7 @@ export default function SuppliersModal({
                   </thead>
                   <tbody>
                     {data.map((item) => (
-                      <FornecedorItem key={item.CODI} fornecedor={item} />
+                      <ClientItem key={item.CODI} client={item} />
                     ))}
                   </tbody>
                 </table>
@@ -109,26 +109,26 @@ export default function SuppliersModal({
   )
 }
 
-const FornecedorItem = ({ fornecedor }: { fornecedor: FornecedorABC }) => (
-  <tr className="bg-white border-b key={fornecedor.CODI}">
+const ClientItem = ({ client }: { client: ClientABC }) => (
+  <tr className="bg-white border-b key={client.CODI}">
     <th
       scope="row"
       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-    >{`${fornecedor.CODI} - ${fornecedor.NOME.slice(0, 40)}`}</th>
-    <td className="px-6 py-4">R${formatMoney(fornecedor.TOTAL)}</td>
-    <td className="px-6 py-4">R${formatMoney(fornecedor.TotalAcumulado)}</td>
-    <td className="px-6 py-4">{fornecedor.Percentual.toFixed(2)} %</td>
-    <td className="px-6 py-4">{fornecedor.PercentualAcumulado.toFixed(2)} %</td>
+    >{`${client.CODI} - ${client.NOME.slice(0, 40)}`}</th>
+    <td className="px-6 py-4">R${formatMoney(client.TOTAL)}</td>
+    <td className="px-6 py-4">R${formatMoney(client.TotalAcumulado)}</td>
+    <td className="px-6 py-4">{client.Percentual.toFixed(2)} %</td>
+    <td className="px-6 py-4">{client.PercentualAcumulado.toFixed(2)} %</td>
     <td
       className={`px-6 py-4 font-semibold ${
-        fornecedor.Classe === 'A'
+        client.Classe === 'A'
           ? 'text-green-500'
-          : fornecedor.Classe === 'B'
+          : client.Classe === 'B'
           ? 'text-yellow-500'
           : 'text-red-500'
       }`}
     >
-      {fornecedor.Classe}
+      {client.Classe}
     </td>
   </tr>
 )

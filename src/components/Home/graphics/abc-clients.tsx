@@ -4,29 +4,29 @@ import { api } from '@/lib/axios/initAxios'
 import { getAuthTokenClient } from '@/utils/get-auth-token-client'
 import dynamic from 'next/dynamic'
 import { ChangeEvent, useEffect, useState } from 'react'
-import SuppliersModal from '../modals/suppliers-modal'
 import { DateInput } from '@/components/All/DateInput'
 import dayjs, { Dayjs } from 'dayjs'
 import { Search } from 'lucide-react'
 import toast, { Toaster } from 'react-hot-toast'
+import CLientsModal from '../modals/clients-modal'
 
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false })
 
-interface Fornecedor {
+interface Client {
   CODI: number
   NOME: string
   TOTAL: number
 }
 
-export interface FornecedorABC extends Fornecedor {
+export interface ClientABC extends Client {
   Percentual: number
   PercentualAcumulado: number
   TotalAcumulado: number
   Classe: string
 }
 
-export function ABCSuppliers() {
-  const [data, setData] = useState<Array<Fornecedor>>([])
+export function ABCClients() {
+  const [data, setData] = useState<Array<Client>>([])
   const [modalOpen, setModalOpen] = useState(false)
 
   const [initialDate, setInitialDate] = useState<Dayjs>(
@@ -50,27 +50,6 @@ export function ABCSuppliers() {
     setFinishDate(selectedDate)
   }
 
-  // const handleOpenModal = async () => {
-  //     if (dayjs(initialDate).isAfter(dayjs(finishDate))) {
-  //         toast.error('Verifique as datas!')
-  //         return
-  //     }
-
-  //     setModalOpen(true)
-
-  //     const response = await api.get('/abc-suppliers', {
-  //         headers: {
-  //             Authorization: `Bearer ${token}`
-  //         },
-  //         params: {
-  //             initialDate,
-  //             finishDate
-  //         }
-  //     })
-
-  //     setData(response.data)
-  // }
-
   useEffect(() => {
     const getGraphicData = async () => {
       if (dayjs(initialDate).isAfter(dayjs(finishDate))) {
@@ -78,7 +57,7 @@ export function ABCSuppliers() {
         return
       }
 
-      const response = await api.get('/abc-suppliers', {
+      const response = await api.get('/abc-clients', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -94,20 +73,21 @@ export function ABCSuppliers() {
     getGraphicData()
   }, [initialDate, finishDate])
 
-  const fornecedoresOrdenados = [...data].sort((a, b) => b.TOTAL - a.TOTAL)
+  const clientsOrdenados = [...data].sort((a, b) => b.TOTAL - a.TOTAL)
 
   const totalGeral = data.reduce(
-    (total, fornecedor) => total + fornecedor.TOTAL,
+    (total, client) => total + client.TOTAL,
     0,
   )
 
   let percentualAcumulado = 0
   let totalAcumulado = 0
-  const fornecedoresABC: FornecedorABC[] = fornecedoresOrdenados.map(
-    (fornecedor) => {
-      const percentual = (fornecedor.TOTAL / totalGeral) * 100
+
+  const clientsABC: ClientABC[] = clientsOrdenados.map(
+    (client) => {
+      const percentual = (client.TOTAL / totalGeral) * 100
       percentualAcumulado += percentual
-      totalAcumulado += fornecedor.TOTAL
+      totalAcumulado += client.TOTAL
 
       let classe = ''
       if (percentualAcumulado <= valueA) {
@@ -119,7 +99,7 @@ export function ABCSuppliers() {
       }
 
       return {
-        ...fornecedor,
+        ...client,
         Percentual: percentual,
         PercentualAcumulado: percentualAcumulado,
         TotalAcumulado: totalAcumulado,
@@ -128,17 +108,13 @@ export function ABCSuppliers() {
     },
   )
 
-  const countA = fornecedoresABC.filter((item) => item.Classe === 'A')
-  const countB = fornecedoresABC.filter((item) => item.Classe === 'B')
-  const countC = fornecedoresABC.filter((item) => item.Classe === 'C')
+  const countA = clientsABC.filter((item) => item.Classe === 'A')
+  const countB = clientsABC.filter((item) => item.Classe === 'B')
+  const countC = clientsABC.filter((item) => item.Classe === 'C')
 
-  const countAPercent = ((countA.length * 100) / fornecedoresABC.length)
-  const countBPercent = ((countB.length * 100) / fornecedoresABC.length)
-  const countCPercent = ((countC.length * 100) / fornecedoresABC.length)
-
-  console.log(fornecedoresABC.length)
-
-  console.log(countA.length, countB.length, countC.length)
+  const countAPercent = ((countA.length * 100) / clientsABC.length)
+  const countBPercent = ((countB.length * 100) / clientsABC.length)
+  const countCPercent = ((countC.length * 100) / clientsABC.length)
 
   return (
     <>
@@ -161,7 +137,7 @@ export function ABCSuppliers() {
                   `${100}%`,
                 ],
                 title: {
-                    text: '% Fornecedores',
+                    text: '% Clientes',
                     style: {
                         fontSize: '12px',
                         fontWeight: 600
@@ -173,7 +149,7 @@ export function ABCSuppliers() {
               },
               yaxis: {
                 title: {
-                    text: '% Custo',
+                    text: '% Valor',
                     style: {
                         fontSize: '12px',
                         fontWeight: 600
@@ -189,7 +165,7 @@ export function ABCSuppliers() {
             }}
             series={[
               {
-                name: 'Custo (%)',
+                name: 'Valor (%)',
                 data: [valueA, 100 - valueC, 100],
               },
             ]}
@@ -200,7 +176,7 @@ export function ABCSuppliers() {
         </div>
         <div>
           <p className="text-md font-semibold text-gray-800">
-            Curva ABC Fornecedores (Custo)
+            Curva ABC Clientes (Vendas)
           </p>
           <div className="flex items-center gap-2 mt-4">
             <DateInput onChange={handleChangeInitialDate} value={initialDate} />
@@ -282,10 +258,10 @@ export function ABCSuppliers() {
           </div>
         </div>
       </div>
-      <SuppliersModal
+      <CLientsModal
         isOpen={modalOpen}
         setOpen={setModalOpen}
-        data={fornecedoresABC}
+        data={clientsABC}
       />
     </>
   )
