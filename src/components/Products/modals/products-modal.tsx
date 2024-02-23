@@ -67,13 +67,13 @@ export default function ProductsModal({
                   <thead className="text-xs text-gray-700 uppercase bg-gray-200 sticky top-0">
                     <tr>
                       <th scope="col" className="px-6 py-3 w-12">
-                       Descrição
+                        Descrição
                       </th>
                       <th scope="col" className="px-6 py-3 w-12">
-                       Quantidade
+                        Quantidade
                       </th>
                       <th scope="col" className="px-6 py-3 w-12">
-                       Valor médio
+                        Valor médio
                       </th>
                       <th scope="col" className="px-6 py-3">
                         Total
@@ -128,7 +128,9 @@ const ProductItem = ({ product }: { product: ProductABC }) => (
     <td className="px-6 py-4">R${formatMoney(product.TOTAL)}</td>
     <td className="px-6 py-4">R${formatMoney(product.TotalAcumulado)}</td>
     <td className="px-6 py-4 text-center">{product.Percentual.toFixed(2)} %</td>
-    <td className="px-6 py-4 text-center">{product.PercentualAcumulado.toFixed(2)} %</td>
+    <td className="px-6 py-4 text-center">
+      {product.PercentualAcumulado.toFixed(2)} %
+    </td>
     <td
       className={`px-6 py-4 font-semibold ${
         product.Classe === 'A'

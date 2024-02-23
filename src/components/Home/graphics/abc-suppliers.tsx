@@ -132,9 +132,9 @@ export function ABCSuppliers() {
   const countB = fornecedoresABC.filter((item) => item.Classe === 'B')
   const countC = fornecedoresABC.filter((item) => item.Classe === 'C')
 
-  const countAPercent = ((countA.length * 100) / fornecedoresABC.length)
-  const countBPercent = ((countB.length * 100) / fornecedoresABC.length)
-  const countCPercent = ((countC.length * 100) / fornecedoresABC.length)
+  const countAPercent = (countA.length * 100) / fornecedoresABC.length
+  const countBPercent = (countB.length * 100) / fornecedoresABC.length
+  const countCPercent = (countC.length * 100) / fornecedoresABC.length
 
   console.log(fornecedoresABC.length)
 
@@ -158,40 +158,42 @@ export function ABCSuppliers() {
                 categories: [
                   0,
                   `${Number(countAPercent).toFixed(2)}%`,
-                  `${(Number(countAPercent) + Number(countBPercent)).toFixed(2)}%`,
+                  `${(Number(countAPercent) + Number(countBPercent)).toFixed(
+                    2,
+                  )}%`,
                   `${100}%`,
                 ],
                 title: {
-                    text: '% Fornecedores',
-                    style: {
-                        fontSize: '12px',
-                        fontWeight: 600
-                    }
+                  text: '% Fornecedores',
+                  style: {
+                    fontSize: '12px',
+                    fontWeight: 600,
+                  },
                 },
                 labels: {
-                    formatter: (val) => (val === null ? '' : val),
-                }
+                  formatter: (val) => (val === null ? '' : val),
+                },
               },
               yaxis: {
                 title: {
-                    text: '% Custo',
-                    style: {
-                        fontSize: '12px',
-                        fontWeight: 600
-                    }
+                  text: '% Custo',
+                  style: {
+                    fontSize: '12px',
+                    fontWeight: 600,
+                  },
                 },
                 max: 100,
-                tickAmount: 5
+                tickAmount: 5,
               },
               dataLabels: {
                 enabled: true,
-                textAnchor: 'middle'
-              }
+                textAnchor: 'middle',
+              },
             }}
             series={[
               {
                 name: 'Custo (%)',
-                data: [0 ,valueA, 100 - valueC, 100],
+                data: [0, valueA, 100 - valueC, 100],
               },
             ]}
             width={230}

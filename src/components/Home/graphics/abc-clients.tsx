@@ -75,46 +75,41 @@ export function ABCClients() {
 
   const clientsOrdenados = [...data].sort((a, b) => b.TOTAL - a.TOTAL)
 
-  const totalGeral = data.reduce(
-    (total, client) => total + client.TOTAL,
-    0,
-  )
+  const totalGeral = data.reduce((total, client) => total + client.TOTAL, 0)
 
   let percentualAcumulado = 0
   let totalAcumulado = 0
 
-  const clientsABC: ClientABC[] = clientsOrdenados.map(
-    (client) => {
-      const percentual = (client.TOTAL / totalGeral) * 100
-      percentualAcumulado += percentual
-      totalAcumulado += client.TOTAL
+  const clientsABC: ClientABC[] = clientsOrdenados.map((client) => {
+    const percentual = (client.TOTAL / totalGeral) * 100
+    percentualAcumulado += percentual
+    totalAcumulado += client.TOTAL
 
-      let classe = ''
-      if (percentualAcumulado <= valueA) {
-        classe = 'A'
-      } else if (percentualAcumulado <= 100 - valueC) {
-        classe = 'B'
-      } else {
-        classe = 'C'
-      }
+    let classe = ''
+    if (percentualAcumulado <= valueA) {
+      classe = 'A'
+    } else if (percentualAcumulado <= 100 - valueC) {
+      classe = 'B'
+    } else {
+      classe = 'C'
+    }
 
-      return {
-        ...client,
-        Percentual: percentual,
-        PercentualAcumulado: percentualAcumulado,
-        TotalAcumulado: totalAcumulado,
-        Classe: classe,
-      }
-    },
-  )
+    return {
+      ...client,
+      Percentual: percentual,
+      PercentualAcumulado: percentualAcumulado,
+      TotalAcumulado: totalAcumulado,
+      Classe: classe,
+    }
+  })
 
   const countA = clientsABC.filter((item) => item.Classe === 'A')
   const countB = clientsABC.filter((item) => item.Classe === 'B')
   const countC = clientsABC.filter((item) => item.Classe === 'C')
 
-  const countAPercent = ((countA.length * 100) / clientsABC.length)
-  const countBPercent = ((countB.length * 100) / clientsABC.length)
-  const countCPercent = ((countC.length * 100) / clientsABC.length)
+  const countAPercent = (countA.length * 100) / clientsABC.length
+  const countBPercent = (countB.length * 100) / clientsABC.length
+  const countCPercent = (countC.length * 100) / clientsABC.length
 
   return (
     <>
@@ -134,35 +129,37 @@ export function ABCClients() {
                 categories: [
                   0,
                   `${Number(countAPercent).toFixed(2)}%`,
-                  `${(Number(countAPercent) + Number(countBPercent)).toFixed(2)}%`,
+                  `${(Number(countAPercent) + Number(countBPercent)).toFixed(
+                    2,
+                  )}%`,
                   `${100}%`,
                 ],
                 title: {
-                    text: '% Clientes',
-                    style: {
-                        fontSize: '12px',
-                        fontWeight: 600
-                    }
+                  text: '% Clientes',
+                  style: {
+                    fontSize: '12px',
+                    fontWeight: 600,
+                  },
                 },
                 labels: {
-                    formatter: (val) => (val === null ? '' : val),
-                }
+                  formatter: (val) => (val === null ? '' : val),
+                },
               },
               yaxis: {
                 title: {
-                    text: '% Valor',
-                    style: {
-                        fontSize: '12px',
-                        fontWeight: 600
-                    }
+                  text: '% Valor',
+                  style: {
+                    fontSize: '12px',
+                    fontWeight: 600,
+                  },
                 },
                 max: 100,
-                tickAmount: 5
+                tickAmount: 5,
               },
               dataLabels: {
                 enabled: true,
-                textAnchor: 'middle'
-              }
+                textAnchor: 'middle',
+              },
             }}
             series={[
               {

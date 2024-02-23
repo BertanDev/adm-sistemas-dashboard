@@ -73,50 +73,45 @@ export function ABCProducts() {
     }
 
     getGraphicData()
-  }, [initialDate, finishDate])
+  }, [initialDate, finishDate, token])
 
   const productsOrdenados = [...data].sort((a, b) => b.TOTAL - a.TOTAL)
 
-  const totalGeral = data.reduce(
-    (total, product) => total + product.TOTAL,
-    0,
-  )
+  const totalGeral = data.reduce((total, product) => total + product.TOTAL, 0)
 
   let percentualAcumulado = 0
   let totalAcumulado = 0
 
-  const productsABC: ProductABC[] = productsOrdenados.map(
-    (product) => {
-      const percentual = (product.TOTAL / totalGeral) * 100
-      percentualAcumulado += percentual
-      totalAcumulado += product.TOTAL
+  const productsABC: ProductABC[] = productsOrdenados.map((product) => {
+    const percentual = (product.TOTAL / totalGeral) * 100
+    percentualAcumulado += percentual
+    totalAcumulado += product.TOTAL
 
-      let classe = ''
-      if (percentualAcumulado <= valueA) {
-        classe = 'A'
-      } else if (percentualAcumulado <= 100 - valueC) {
-        classe = 'B'
-      } else {
-        classe = 'C'
-      }
+    let classe = ''
+    if (percentualAcumulado <= valueA) {
+      classe = 'A'
+    } else if (percentualAcumulado <= 100 - valueC) {
+      classe = 'B'
+    } else {
+      classe = 'C'
+    }
 
-      return {
-        ...product,
-        Percentual: percentual,
-        PercentualAcumulado: percentualAcumulado,
-        TotalAcumulado: totalAcumulado,
-        Classe: classe,
-      }
-    },
-  )
+    return {
+      ...product,
+      Percentual: percentual,
+      PercentualAcumulado: percentualAcumulado,
+      TotalAcumulado: totalAcumulado,
+      Classe: classe,
+    }
+  })
 
   const countA = productsABC.filter((item) => item.Classe === 'A')
   const countB = productsABC.filter((item) => item.Classe === 'B')
   const countC = productsABC.filter((item) => item.Classe === 'C')
 
-  const countAPercent = ((countA.length * 100) / productsABC.length)
-  const countBPercent = ((countB.length * 100) / productsABC.length)
-  const countCPercent = ((countC.length * 100) / productsABC.length)
+  const countAPercent = (countA.length * 100) / productsABC.length
+  const countBPercent = (countB.length * 100) / productsABC.length
+  const countCPercent = (countC.length * 100) / productsABC.length
 
   return (
     <>
@@ -134,37 +129,39 @@ export function ABCProducts() {
               },
               xaxis: {
                 categories: [
-                    0,
+                  0,
                   `${Number(countAPercent).toFixed(2)}%`,
-                  `${(Number(countAPercent) + Number(countBPercent)).toFixed(2)}%`,
+                  `${(Number(countAPercent) + Number(countBPercent)).toFixed(
+                    2,
+                  )}%`,
                   `${100}%`,
                 ],
                 title: {
-                    text: '% Produtos',
-                    style: {
-                        fontSize: '12px',
-                        fontWeight: 600
-                    }
+                  text: '% Produtos',
+                  style: {
+                    fontSize: '12px',
+                    fontWeight: 600,
+                  },
                 },
                 labels: {
-                    formatter: (val) => (val === null ? '' : val),
-                }
+                  formatter: (val) => (val === null ? '' : val),
+                },
               },
               yaxis: {
                 title: {
-                    text: '% Receita',
-                    style: {
-                        fontSize: '12px',
-                        fontWeight: 600
-                    }
+                  text: '% Receita',
+                  style: {
+                    fontSize: '12px',
+                    fontWeight: 600,
+                  },
                 },
                 max: 100,
-                tickAmount: 5
+                tickAmount: 5,
               },
               dataLabels: {
                 enabled: true,
-                textAnchor: 'middle'
-              }
+                textAnchor: 'middle',
+              },
             }}
             series={[
               {

@@ -33,13 +33,16 @@ export async function ReceivableByDate() {
   const renderData = () => {
     // Calcular o valor total
     const total = Object.values(data).reduce(
-      (acc: number, curr) => acc + curr,
+      (acc: number, curr: any) => acc + curr,
       0,
     )
 
     return Object.entries(data).map(([chave, valor]) => {
       // Calcular a porcentagem
-      const porcentagem = ((valor / total) * 100).toFixed(2).padStart(5, '0')
+      const valorComoNumero = typeof valor === 'number' ? valor : 0 // garantindo que valor seja um número
+      const porcentagem = ((valorComoNumero / total) * 100)
+        .toFixed(2)
+        .padStart(5, '0')
 
       return (
         <div
@@ -47,7 +50,9 @@ export async function ReceivableByDate() {
           className="flex py-2 text-gray-600 font-semibold text-sm"
         >
           <span className="pl-2 pr-2 w-32">{chave}</span>
-          <span className="ml-4 pr-2 w-[165px]">R${formatMoney(valor)}</span>
+          <span className="ml-4 pr-2 w-[165px]">
+            R${formatMoney(valorComoNumero)}
+          </span>
           <span className="ml-4">{porcentagem}%</span>
         </div>
       )

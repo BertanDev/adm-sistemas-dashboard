@@ -113,7 +113,7 @@ export default function MovementsLastTwelveMonths() {
               type: 'line',
             },
             dataLabels: {
-              enabled: false
+              enabled: false,
             },
             xaxis: {
               categories: datesArrayFormatted,

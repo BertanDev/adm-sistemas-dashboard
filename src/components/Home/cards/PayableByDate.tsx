@@ -29,19 +29,22 @@ export async function PayableByDate() {
   const renderData = () => {
     // Calcular o valor total
     const total = Object.values(data).reduce(
-      (acc: number, curr) => acc + curr,
+      (acc: number, curr: any) => acc + curr,
       0,
     )
 
     return Object.entries(data).map(([chave, valor]) => {
       // Calcular a porcentagem
-      const porcentagem = ((valor / total) * 100).toFixed(2).padStart(5, '0')
+      const valorComoNumero = typeof valor === 'number' ? valor : 0 // garantindo que valor seja um número
+      const porcentagem = ((valorComoNumero / total) * 100)
+        .toFixed(2)
+        .padStart(5, '0')
 
       return (
         <div key={chave} className="flex py-2 text-gray-600 font-semibold">
           <span className="text-sm pl-2 pr-2 w-32">{chave}</span>
           <span className="text-sm ml-4 pr-2 w-[165px]">
-            R${formatMoney(valor)}
+            R${formatMoney(valorComoNumero)}
           </span>
           <span className="text-sm ml-4">{porcentagem}%</span>
         </div>

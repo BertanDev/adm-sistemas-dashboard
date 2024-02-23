@@ -11,6 +11,12 @@ import {
   Users,
 } from 'lucide-react'
 
+interface LinkComponentProps {
+  href: string
+  childrenText: string
+  icon: LucideIcon
+}
+
 const pages = [
   {
     href: '/dashboard/home',
@@ -62,12 +68,6 @@ const Sidebar = () => {
 }
 
 export { Sidebar }
-
-interface LinkComponentProps {
-  href: string
-  childrenText: string
-  icon: LucideIcon
-}
 
 const LinkComponent = ({
   href,

@@ -30,13 +30,15 @@ export default function BestSellers() {
     }
 
     getData()
-  }, [])
+  }, [token])
 
   const categories = products.map((product) => product.DESCR)
 
-  const valueCurrentMonth = products.map((product) => product.TOTAL_ATUAL)
-  const valuePreviousMonth = products.map(
-    (product) => product.TOTAL_MES_ANTERIOR,
+  const valueCurrentMonth = products.map((product) =>
+    parseFloat(product.TOTAL_ATUAL),
+  )
+  const valuePreviousMonth = products.map((product) =>
+    parseFloat(product.TOTAL_MES_ANTERIOR),
   )
 
   const values = [

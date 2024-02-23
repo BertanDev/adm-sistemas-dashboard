@@ -35,7 +35,7 @@ export function AllGroupsProfit({ finishDate, initialDate }: AllGroupsProfit) {
     }
 
     getData()
-  }, [finishDate, initialDate])
+  }, [finishDate, initialDate, token])
 
   const revenue = data ? data.map((item) => item.RECEITA) : []
   const cust = data ? data.map((item) => item.CUSTO) : []

@@ -26,7 +26,7 @@ export function ClientsPerState() {
     }
 
     getData()
-  }, [])
+  }, [token])
 
   const total = states.map((item) => item.TOTAL_REGISTROS)
   const ufs = states.map((item) => `${item.UF} - ${item.TOTAL_REGISTROS}`)
