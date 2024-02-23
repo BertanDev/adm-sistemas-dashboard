@@ -132,6 +132,7 @@ export function ABCClients() {
               },
               xaxis: {
                 categories: [
+                  0,
                   `${Number(countAPercent).toFixed(2)}%`,
                   `${(Number(countAPercent) + Number(countBPercent)).toFixed(2)}%`,
                   `${100}%`,
@@ -166,10 +167,10 @@ export function ABCClients() {
             series={[
               {
                 name: 'Valor (%)',
-                data: [valueA, 100 - valueC, 100],
+                data: [0, valueA, 100 - valueC, 100],
               },
             ]}
-            width={200}
+            width={230}
             height={150}
             type="area"
           />

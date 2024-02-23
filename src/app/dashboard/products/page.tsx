@@ -1,5 +1,6 @@
 import { TotalCustValue } from '@/components/Products/cards/total_cust_value'
 import { TotalSellValue } from '@/components/Products/cards/total_sell_value'
+import { ABCProducts } from '@/components/Products/graphics/abc-products'
 import BestSellers from '@/components/Products/graphics/best-sellers'
 import { Metadata } from 'next'
 
@@ -21,6 +22,7 @@ const Products = () => {
 
         <div className="grid grid-cols-1 2xl:grid-cols-2 gap-8 mt-8">
           <BestSellers />
+          <ABCProducts />
         </div>
       </main>
     </div>
