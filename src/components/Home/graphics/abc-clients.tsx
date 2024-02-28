@@ -71,7 +71,7 @@ export function ABCClients() {
     }
 
     getGraphicData()
-  }, [initialDate, finishDate])
+  }, [initialDate, finishDate, token])
 
   const clientsOrdenados = [...data].sort((a, b) => b.TOTAL - a.TOTAL)
 
@@ -105,11 +105,11 @@ export function ABCClients() {
 
   const countA = clientsABC.filter((item) => item.Classe === 'A')
   const countB = clientsABC.filter((item) => item.Classe === 'B')
-  const countC = clientsABC.filter((item) => item.Classe === 'C')
+  // const countC = clientsABC.filter((item) => item.Classe === 'C')
 
   const countAPercent = (countA.length * 100) / clientsABC.length
   const countBPercent = (countB.length * 100) / clientsABC.length
-  const countCPercent = (countC.length * 100) / clientsABC.length
+  // const countCPercent = (countC.length * 100) / clientsABC.length
 
   return (
     <>

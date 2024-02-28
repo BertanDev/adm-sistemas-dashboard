@@ -71,7 +71,7 @@ export function ABCSuppliers() {
     }
 
     getGraphicData()
-  }, [initialDate, finishDate])
+  }, [initialDate, finishDate, token])
 
   const fornecedoresOrdenados = [...data].sort((a, b) => b.TOTAL - a.TOTAL)
 
@@ -109,11 +109,11 @@ export function ABCSuppliers() {
 
   const countA = fornecedoresABC.filter((item) => item.Classe === 'A')
   const countB = fornecedoresABC.filter((item) => item.Classe === 'B')
-  const countC = fornecedoresABC.filter((item) => item.Classe === 'C')
+  // const countC = fornecedoresABC.filter((item) => item.Classe === 'C')
 
   const countAPercent = (countA.length * 100) / fornecedoresABC.length
   const countBPercent = (countB.length * 100) / fornecedoresABC.length
-  const countCPercent = (countC.length * 100) / fornecedoresABC.length
+  // const countCPercent = (countC.length * 100) / fornecedoresABC.length
 
   console.log(fornecedoresABC.length)
 

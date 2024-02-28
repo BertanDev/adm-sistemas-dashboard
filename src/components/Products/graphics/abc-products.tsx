@@ -107,11 +107,11 @@ export function ABCProducts() {
 
   const countA = productsABC.filter((item) => item.Classe === 'A')
   const countB = productsABC.filter((item) => item.Classe === 'B')
-  const countC = productsABC.filter((item) => item.Classe === 'C')
+  // const countC = productsABC.filter((item) => item.Classe === 'C')
 
   const countAPercent = (countA.length * 100) / productsABC.length
   const countBPercent = (countB.length * 100) / productsABC.length
-  const countCPercent = (countC.length * 100) / productsABC.length
+  // const countCPercent = (countC.length * 100) / productsABC.length
 
   return (
     <>

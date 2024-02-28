@@ -55,7 +55,7 @@ export function ProfitGroupProducts() {
     }
 
     getGroups()
-  }, [])
+  }, [token])
 
   useEffect(() => {
     const today = dayjs()
@@ -79,7 +79,7 @@ export function ProfitGroupProducts() {
           onChange={toggleGroup}
         />
       </div>
-      <div className='overflow-x-auto'>
+      <div className="overflow-x-auto">
         <AllGroupsProfit initialDate={initialDate} finishDate={finishDate} />
       </div>
     </div>

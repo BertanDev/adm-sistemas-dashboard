@@ -34,7 +34,7 @@ export function PurchaseAndSales() {
     }
 
     getData()
-  }, [])
+  }, [token])
 
   const salesValuesArray = [] as Array<number>
 

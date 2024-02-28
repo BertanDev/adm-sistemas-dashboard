@@ -2,11 +2,7 @@
 
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
-import {
-  ChevronDownIcon,
-  GlobeAmericasIcon,
-  PhoneIcon,
-} from '@heroicons/react/20/solid'
+import { ChevronDownIcon, GlobeAmericasIcon } from '@heroicons/react/20/solid'
 import {
   ChartBarIcon,
   ShoppingCartIcon,
@@ -15,7 +11,6 @@ import {
   BanknotesIcon,
 } from '@heroicons/react/24/outline'
 
-import { LogOut } from 'lucide-react'
 import { LogOutButton } from './LogOutButton'
 
 const solutions = [

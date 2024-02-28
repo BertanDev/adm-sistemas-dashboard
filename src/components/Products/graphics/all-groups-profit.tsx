@@ -43,7 +43,7 @@ export function AllGroupsProfit({ finishDate, initialDate }: AllGroupsProfit) {
   const groups = data ? data.map((item) => item.DESCR) : []
 
   return (
-    <div className='text-black'>
+    <div className="text-black">
       <Chart
         series={[
           {
@@ -79,7 +79,7 @@ export function AllGroupsProfit({ finishDate, initialDate }: AllGroupsProfit) {
           stroke: {
             show: true,
             width: 12,
-            colors: ['transparent']
+            colors: ['transparent'],
           },
           plotOptions: {
             bar: {
@@ -96,7 +96,7 @@ export function AllGroupsProfit({ finishDate, initialDate }: AllGroupsProfit) {
               style: {
                 fontSize: '12px',
                 fontWeight: 700,
-                colors: 'black'
+                colors: 'black',
               },
             },
             title: {
