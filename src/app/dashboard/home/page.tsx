@@ -23,10 +23,10 @@ const Home = () => {
           <Balance />
         </div>
 
-        <div className="flex flex-row flex-wrap gap-12 mt-12 w-11/12 sm:mb-2 mb-9">
+        <div className="flex flex-row flex-wrap gap-12 mt-12 w-11/12 sm:mb-0 mb-9">
           <ReceivableByDate />
           <PayableByDate />
-          <div className="flex flex-col gap-11">
+          <div className="flex flex-col gap-11 sm:gap-1">
             <ABCSuppliers />
             <hr className="border-t-2" />
             <ABCClients />
