@@ -50,27 +50,6 @@ export function ABCSuppliers() {
     setFinishDate(selectedDate)
   }
 
-  // const handleOpenModal = async () => {
-  //     if (dayjs(initialDate).isAfter(dayjs(finishDate))) {
-  //         toast.error('Verifique as datas!')
-  //         return
-  //     }
-
-  //     setModalOpen(true)
-
-  //     const response = await api.get('/abc-suppliers', {
-  //         headers: {
-  //             Authorization: `Bearer ${token}`
-  //         },
-  //         params: {
-  //             initialDate,
-  //             finishDate
-  //         }
-  //     })
-
-  //     setData(response.data)
-  // }
-
   useEffect(() => {
     const getGraphicData = async () => {
       if (dayjs(initialDate).isAfter(dayjs(finishDate))) {
@@ -143,7 +122,7 @@ export function ABCSuppliers() {
   return (
     <>
       <Toaster />
-      <div className="flex gap-4">
+      <div className="flex gap-2 sm:gap-4 sm:flex-row flex-col">
         <div>
           <Chart
             options={{

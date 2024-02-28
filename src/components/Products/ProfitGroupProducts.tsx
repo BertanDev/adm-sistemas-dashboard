@@ -79,7 +79,9 @@ export function ProfitGroupProducts() {
           onChange={toggleGroup}
         />
       </div>
-      <AllGroupsProfit initialDate={initialDate} finishDate={finishDate} />
+      <div className='overflow-x-auto'>
+        <AllGroupsProfit initialDate={initialDate} finishDate={finishDate} />
+      </div>
     </div>
   )
 }

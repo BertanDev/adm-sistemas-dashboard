@@ -6,6 +6,7 @@ import { ValueReceive } from '@/components/Home/cards/ValueReceive'
 import { ABCClients } from '@/components/Home/graphics/abc-clients'
 import { ABCSuppliers } from '@/components/Home/graphics/abc-suppliers'
 import { PurchaseAndSales } from '@/components/Home/graphics/purchase-and-sales'
+import { ProfitGroupProducts } from '@/components/Products/ProfitGroupProducts'
 
 const Home = () => {
   return (
@@ -23,11 +24,12 @@ const Home = () => {
           <Balance />
         </div>
 
-        <div className="flex flex-row flex-wrap gap-12 mt-12 w-full">
+        <div className="flex flex-row flex-wrap gap-12 mt-12 w-11/12 sm:mb-2 mb-9">
           <ReceivableByDate />
           <PayableByDate />
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-11">
             <ABCSuppliers />
+            <hr className='border-t-2' />
             <ABCClients />
           </div>
         </div>

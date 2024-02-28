@@ -43,7 +43,7 @@ export function AllGroupsProfit({ finishDate, initialDate }: AllGroupsProfit) {
   const groups = data ? data.map((item) => item.DESCR) : []
 
   return (
-    <div>
+    <div className='text-black'>
       <Chart
         series={[
           {
@@ -63,8 +63,6 @@ export function AllGroupsProfit({ finishDate, initialDate }: AllGroupsProfit) {
           chart: {
             type: 'bar',
             height: 350,
-            stacked: true,
-            stackType: '100%',
           },
           responsive: [
             {
@@ -78,16 +76,31 @@ export function AllGroupsProfit({ finishDate, initialDate }: AllGroupsProfit) {
               },
             },
           ],
+          stroke: {
+            show: true,
+            width: 12,
+            colors: ['transparent']
+          },
+          plotOptions: {
+            bar: {
+              horizontal: false,
+              columnWidth: 50,
+            },
+          },
+          dataLabels: {
+            enabled: true,
+          },
           xaxis: {
             categories: groups,
             labels: {
               style: {
                 fontSize: '12px',
                 fontWeight: 700,
+                colors: 'black'
               },
             },
             title: {
-              text: 'Quantidade',
+              text: '',
             },
           },
           fill: {
@@ -99,8 +112,8 @@ export function AllGroupsProfit({ finishDate, initialDate }: AllGroupsProfit) {
             offsetY: 50,
           },
         }}
-        width={1800}
-        height={400}
+        width="5000px"
+        height={300}
         type="bar"
       />
     </div>
