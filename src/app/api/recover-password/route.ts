@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function GET(req: NextRequest) {
   const token = req.nextUrl.searchParams.get('t')
 
-  const baseUrl = new URL('http://54.207.219.196:3000')
+  const baseUrl = new URL('http://18.229.226.244:3000')
 
   const successRoute = new URL('/?st=t', baseUrl)
   const failedRoute = new URL('/?st=f', baseUrl)

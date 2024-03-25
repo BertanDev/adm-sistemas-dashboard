@@ -113,7 +113,7 @@ const FornecedorItem = ({ fornecedor }: { fornecedor: FornecedorABC }) => (
   <tr className="bg-white border-b key={fornecedor.CODI}">
     <th
       scope="row"
-      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
     >{`${fornecedor.CODI} - ${fornecedor.NOME.slice(0, 40)}`}</th>
     <td className="px-6 py-4">R${formatMoney(fornecedor.TOTAL)}</td>
     <td className="px-6 py-4">R${formatMoney(fornecedor.TotalAcumulado)}</td>

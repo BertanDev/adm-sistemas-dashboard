@@ -114,7 +114,7 @@ export function ABCClients() {
   return (
     <>
       <Toaster />
-      <div className="flex gap-1 sm:gap-4 sm:flex-row flex-col">
+      <div className="flex gap-1 sm:gap-4 sm:flex-row flex-col text-black">
         <div>
           <Chart
             options={{

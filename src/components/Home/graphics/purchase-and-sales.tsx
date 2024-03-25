@@ -67,7 +67,7 @@ export function PurchaseAndSales() {
   const datesArrayFormatted = dayjsFormatMMMYYYY(purchaseDatesArray)
 
   return (
-    <div>
+    <div className="text-black">
       <Chart
         series={[
           {

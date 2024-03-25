@@ -121,7 +121,7 @@ const ProductItem = ({ product }: { product: ProductABC }) => (
   <tr className="bg-white border-b key={product.CODI}">
     <th
       scope="row"
-      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
     >{`${product.CODI} - ${product.DESCR.slice(0, 40)}`}</th>
     <td className="px-6 py-4 text-center">{product.QTD}</td>
     <td className="px-6 py-4">R${formatMoney(product.PRECO_MEDIO)}</td>

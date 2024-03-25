@@ -113,7 +113,7 @@ const ClientItem = ({ client }: { client: ClientABC }) => (
   <tr className="bg-white border-b key={client.CODI}">
     <th
       scope="row"
-      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
     >{`${client.CODI} - ${client.NOME.slice(0, 40)}`}</th>
     <td className="px-6 py-4">R${formatMoney(client.TOTAL)}</td>
     <td className="px-6 py-4">R${formatMoney(client.TotalAcumulado)}</td>
