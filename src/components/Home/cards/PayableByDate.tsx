@@ -28,7 +28,9 @@ export async function PayableByDate() {
 
   const renderData = () => {
     // Calcular o valor total
+
     const total = Object.values(data).reduce(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (acc: number, curr: any) => acc + curr,
       0,
     )

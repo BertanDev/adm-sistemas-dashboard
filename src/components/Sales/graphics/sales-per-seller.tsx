@@ -13,6 +13,7 @@ export default function SalesPerSeller() {
   const [employees, setEmployees] = useState<
     Array<{ CODI: number; NOME: string }>
   >([])
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [sales, setSales] = useState<Array<any>>([])
 
   const [currentEmployee, setCurrentEmployee] = useState<number | undefined>(0)

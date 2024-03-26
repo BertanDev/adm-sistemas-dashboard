@@ -13,7 +13,6 @@ export async function ValueReceive() {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-
       }),
       api.get('/total-receivable-current-month', {
         headers: {
