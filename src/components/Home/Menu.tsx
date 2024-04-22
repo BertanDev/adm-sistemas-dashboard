@@ -67,9 +67,8 @@ export function Menu() {
           <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
         </Popover.Button>
 
-        <p className="text-sm font-semibold leading-6">
-          Covatti Acabamentos S.A
-        </p>
+        {/* <p className="text-sm font-semibold leading-6">
+        </p> */}
       </div>
 
       <Transition

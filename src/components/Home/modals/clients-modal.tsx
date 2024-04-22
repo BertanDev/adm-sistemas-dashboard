@@ -14,6 +14,7 @@ export default function CLientsModal({
   setOpen,
   data,
 }: ClientsModalProps) {
+  console.log('dataaa: ', data)
   const cancelButtonRef = useRef(null)
 
   return (

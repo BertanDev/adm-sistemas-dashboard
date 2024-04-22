@@ -26,6 +26,7 @@ export default function BestSellers() {
         },
       })
 
+      console.log('value: ', response.data)
       setProducts(response.data)
     }
 
