@@ -1,4 +1,4 @@
-import dayjs from 'dayjs'
+import dayjs, { Dayjs } from 'dayjs'
 import 'dayjs/locale/pt-br'
 dayjs.locale('pt-br')
 
@@ -64,6 +64,26 @@ export function getLastTwelveMonths() {
   }
 
   return monthsArray
+}
+
+/**
+ * @param {string} data - Recebe uma string de data no formato 2024-05-16T03:00:00.000Z.
+ * @returns {string} Retorna uma string no formato extenso: 16 de Fevereiro de 2024.
+ */
+
+export function dayjsFormatExtenso(dateString: string) {
+  const date = dayjs(dateString)
+  return date.format('DD [de] MMMM [de] YYYY')
+}
+
+/**
+ * @param {Dayjs} data - Recebe uma string de data no formato Dayjs.
+ * @returns {string} Retorna uma string no formato DD/MM/YYYY.
+ */
+
+export function daysjFormatDDMMYYYY(date: Dayjs) {
+  // const date = dayjs(dateString)
+  return date.format('DD[/]MM[/]YYYY')
 }
 
 export function getCurrentDateDDMMYYYY() {

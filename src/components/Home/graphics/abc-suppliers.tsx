@@ -57,6 +57,11 @@ export function ABCSuppliers() {
         return
       }
 
+      if (!dayjs(initialDate).isValid() || !dayjs(finishDate).isValid()) {
+        toast.error('Verifique as datas!')
+        return
+      }
+
       const response = await api.get('/abc-suppliers', {
         headers: {
           Authorization: `Bearer ${token}`,

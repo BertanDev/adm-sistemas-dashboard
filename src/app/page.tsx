@@ -58,8 +58,8 @@ export default function App() {
       Cookie.set('auth_token', token, { expires: 30 })
       toast.success('Bem vindo!')
       router.push('/dashboard/home')
-    } catch {
-      toast.error('Não foi possível realizar login')
+    } catch (error) {
+      toast.error('Não foi possível realizar login.' + error)
     }
   }
 

@@ -1,3 +1,4 @@
+import { SearchSales } from '@/components/Clients/SearchSales'
 import { BuyThisMonth } from '@/components/Clients/cards/BuyThisMonth'
 import { ClientsInDebit } from '@/components/Clients/cards/ClientsInDebit'
 import { TotalActiveClients } from '@/components/Clients/cards/TotalActiveClients'
@@ -22,8 +23,9 @@ const Clients = () => {
           <ClientsInDebit />
         </div>
 
-        <div className="grid grid-cols-1 2xl:grid-cols-2 gap-8 mt-8">
+        <div className="grid grid-cols-1 min-[1110px]:grid-cols-2 2xl:grid-cols-3 gap-8 mt-8">
           <ClientsPerState />
+          <SearchSales />
         </div>
       </main>
     </div>
