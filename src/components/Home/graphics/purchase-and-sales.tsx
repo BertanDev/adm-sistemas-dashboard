@@ -72,7 +72,7 @@ export function PurchaseAndSales() {
         series={[
           {
             name: 'Compras',
-            data: purchaseValuesArray.toReversed(),
+            data: purchaseValuesArray ? purchaseValuesArray.toReversed() : [],
           },
           {
             name: 'Vendas',

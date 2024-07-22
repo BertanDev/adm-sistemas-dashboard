@@ -69,8 +69,6 @@ export default function SearchSalesModal({
     {},
   )
 
-  console.log('valores: ', groupedData)
-
   return (
     <Transition.Root show={isOpen} as={Fragment}>
       <Dialog
