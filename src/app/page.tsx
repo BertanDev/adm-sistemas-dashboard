@@ -15,6 +15,7 @@ import logo from '../assets/images/admLogoGray.png'
 const loginFormSchema = z.object({
   email: z.string().min(1, { message: 'Informe seu email' }),
   password: z.string().min(1, { message: 'Informe sua senha' }),
+  empr: z.string().min(1, { message: 'Informe a empresa' }),
 })
 
 type LoginFormData = z.infer<typeof loginFormSchema>
@@ -44,12 +45,20 @@ export default function App() {
   const router = useRouter()
 
   async function onSubmit(data: LoginFormData) {
-    const { email, password } = data
+    const { email, password, empr } = data
+
+    const emprNumber = Number(empr)
+
+    if (isNaN(emprNumber)) {
+      toast.error('O campo "empr" precisa ser um número válido.')
+      return
+    }
 
     try {
       const response = await api.post('/login', {
         email,
         password,
+        empr: emprNumber,
       })
 
       const { token } = response.data
@@ -131,6 +140,24 @@ export default function App() {
                   required
                   className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-blue-500 sm:text-sm sm:leading-6"
                   {...register('password')}
+                />
+              </div>
+            </div>
+
+            <div>
+              <label
+                htmlFor="empr"
+                className="block text-sm font-medium leading-6 text-gray-800"
+              >
+                Empresa
+              </label>
+              <div className="mt-2">
+                <input
+                  id="empr"
+                  type="text"
+                  required
+                  className="p-2 block w-1/6 rounded-md border-0 py-1.5 text-gray-600 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-blue-500 sm:text-sm sm:leading-6"
+                  {...register('empr')}
                 />
               </div>
             </div>
