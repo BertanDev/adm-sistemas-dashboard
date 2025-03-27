@@ -64,7 +64,8 @@ export default function App() {
       const { token } = response.data
 
       api.defaults.headers.common.Authorization = `Bearer ${token}`
-      Cookie.set('auth_token', token, { expires: 30 })
+      Cookie.set('auth_token', token, { expires: 30 * 12 })
+      // sessionStorage.setItem('auth_token', token)
       toast.success('Bem vindo!')
       router.push('/dashboard/home')
     } catch (error) {

@@ -78,8 +78,6 @@ export function ABCClients() {
     getGraphicData()
   }, [initialDate, finishDate, token])
 
-  console.log(data)
-
   const clientsOrdenados = [...data].sort((a, b) => b.TOTAL - a.TOTAL)
 
   const totalGeral = data.reduce((total, client) => total + client.TOTAL, 0)
